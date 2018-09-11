@@ -1,49 +1,53 @@
-import java.util.Iterator;
+import java.util.Scanner;
 import java.util.LinkedList;
-public class DepthFirstSearch
+class Dfs
 {
-	int vertices;
-	LinkedList<Integer> adj_list[];
-	DepthFirstSearch(int v)
-	{
-		vertices=v;
-		adj_list=new LinkedList[v];
-		for(int i=0;i<v;i++)
-		{
-			adj_list[i]=new LinkedList();
-		}
-	}
-	void add_edge(int v,int w)
-	{
-		adj_list[v].add(w);
-	}
-	void lookUp(int v,boolean visited_vertices[])
-	{
-		visited_vertices[v]=true;
-		System.out.print(v+" ");
-		Iterator<Integer> i=adj_list[v].listIterator();
-		while(i.hasNext())
-		{
-			int remain_vertices=i.next();
-			if(!visited_vertices[remain_vertices])
-			{
-				lookUp(remain_vertices,visited_vertices);
-			}
-		}
-	}
-	void DFS(int v)
-	{
-		boolean visited_vertices[]=new boolean[vertices];
-		lookUp(v,visited_vertices);
-	}
-	public static void main(String[] args) {
-		DepthFirstSearch graph=new DepthFirstSearch(5);
-		graph.add_edge(0,1);
-		graph.add_edge(0,2);
-		graph.add_edge(1,2);
-        graph.add_edge(2,0);
-        graph.add_edge(2,3);
-        graph.add_edge(3,3);
-        graph.DFS(2);
-	}
+   int v;
+   LinkedList<Integer> adj[];
+   Dfs(int v)
+   {
+   	this.v=v;
+   	adj=new LinkedList[v];
+   	for(int i=0;i<v;i++)
+   	{
+   		adj[i]=new LinkedList<>();
+   	}
+   }
+   void addEdge(int src,int dest)
+   {
+   	adj[src].add(dest);
+   }	
+   void dfsUtil(int s,boolean visited[])
+   {
+   	visited[s]=true;
+   	System.out.print(s+" ");
+   	for(Integer i:adj[s])
+   	{
+   		if(!visited[i])
+   		{
+   			dfsUtil(i,visited);
+   		}
+   	}
+   }
+   void mdfs(int s)
+   {
+   	boolean visited[]=new boolean[v];
+   	dfsUtil(s,visited);
+   }
+   public static void main(String ar[])
+   {
+   	Scanner sc=new Scanner(System.in);
+   	int v=sc.nextInt();
+   	int e=sc.nextInt();
+     Dfs d=new Dfs(v);
+     for(int i=1;i<=e;i++)
+     {
+     	int src=sc.nextInt();
+     	int dest=sc.nextInt();
+     	d.addEdge(src,dest);
+     }
+     //Vertix where we want to start Dfs
+     int s=sc.nextInt();
+     d.mdfs(s);
+   }
 }
