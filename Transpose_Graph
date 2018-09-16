@@ -1,0 +1,76 @@
+import java.util.Scanner;
+class Transpose_Graph
+{
+	int v;
+	int [][]a;
+	Transpose_Graph(int v)
+	{
+		this.v=v;
+         a=new int[v][v];
+		for(int i=0;i<v;i++)
+		{
+			for(int j=0;j<v;j++)
+			{
+                 a[i][j]=0;
+			}
+		}
+	}
+	void addEdge(int src,int dest)
+	{
+		a[src][dest]=1;
+	}
+	void transpose()
+	{
+		int [][]b=new int [v][v];
+		int i,j;
+		for(i=0;i<v;i++)
+		{
+			for(j=0;j<v;j++)
+			{
+				b[i][j]=0;
+			}
+		}
+for(i=0;i<v;i++)
+		{
+			for(j=0;j<v;j++)
+			{
+		
+				if(a[i][j]==1)
+					b[j][i]=1;
+			}
+		}
+
+		for(i=0;i<v;i++)
+		{
+			for(j=0;j<v;j++)
+			{
+				a[i][j]=b[i][j];
+			}
+		}
+      for(i=0;i<v;i++)
+		{
+			System.out.print(i);
+			for(j=0;j<v;j++)
+			{
+			  if(a[i][j]==1)
+			  	System.out.print("->"+j);
+		    }	
+		    System.out.println();		
+		}
+
+		}
+
+public static void main(String[] args) {
+	Scanner sc=new Scanner(System.in);
+	int v=sc.nextInt();
+	int e=sc.nextInt();
+Transpose_Graph g=new Transpose_Graph(v);
+for(int i=1;i<=e;i++)
+{
+	int src=sc.nextInt();
+	int dest=sc.nextInt();
+	g.addEdge(src,dest);
+}
+g.transpose();
+}
+	}
