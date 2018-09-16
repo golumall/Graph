@@ -49,7 +49,7 @@ class Transpose_Graph_LinkedList
 	Scanner sc=new Scanner(System.in);
 	int v=sc.nextInt();
 	int e=sc.nextInt();
-Transpose_Graph g=new Transpose_Graph(v);
+Transpose_Graph_LinkedList g=new Transpose_Graph_LinkedList(v);
 for(int i=1;i<=e;i++)
 {
 	int src=sc.nextInt();
