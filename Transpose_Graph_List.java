@@ -31,7 +31,7 @@ class Transpose_Graph_LinkedList
   	{
   		for(Integer j:adj[i])
   		{
-           addEdge1(i,j);
+           addEdge1(j,i);
   		}
   	}
   	for(int i=0;i<v;i++)
